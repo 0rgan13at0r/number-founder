@@ -1,9 +1,20 @@
 import argparse
 import sys
+import re
 
+from core.search import look_for_in_clipboard, look_for_in_text_file
 
 def main():
-    print("Hello, World!!!")
+
+    if not args.pattern:
+        print("Pattern not founded!")
+        sys.exit(1)
+
+    if args.clipboard:
+        look_for_in_clipboard(args.pattern)
+        
+    elif args.file-txt:
+        look_for_in_text_file(pattern, args.file-txt)
 
 
 if __name__ == "__main__":
