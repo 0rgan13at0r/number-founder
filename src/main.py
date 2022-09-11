@@ -11,10 +11,10 @@ def main():
         sys.exit(1)
 
     if args.clipboard:
-        look_for_in_clipboard(args.pattern)
-        
+        look_for_in_clipboard(args.pattern, args.output)
+
     elif args.file-txt:
-        look_for_in_text_file(pattern, args.file-txt)
+        look_for_in_text_file(pattern, args.file-txt, args.output)
 
 
 if __name__ == "__main__":
@@ -29,7 +29,7 @@ if __name__ == "__main__":
     group.add_argument("--file-txt", "-ft", type=str, help="Looking for number in text file.", metavar="FILE")
 
     parser.add_argument("--pattern", "-p", type=str, help="Usage own pattern.", metavar="PATTERN")
-    parser.add_argument("--output", "-o", help="Write in file", type=str, metavar="FILE")
+    parser.add_argument("--output", "-o", help="Write in file", type=str, metavar="FILE", default=False)
 
     args = parser.parse_args()
 
