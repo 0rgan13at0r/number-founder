@@ -6,19 +6,22 @@ from pathlib import Path
 from time import sleep
 
 
-def look_for_in_clipboard(pattern: str):
+def look_for_in_clipboard(pattern: str, output_file: str):
     numbers_count = 0
 
     for number in re.findall(pattern, pyperclip.paste()):
         sleep(0.03)
 
-        print(f"Found: +{''.join(number)}\n")
+        print(f"Found: +{''.join(number)}")
         numbers_count += 1
+
+        if output_file:
+            _output(output_file, f"+{''.join(number)}")
 
     print(f"Done\nNumbers count: {numbers_count}")
 
 
-def look_for_in_text_file(pattern: str, file_to: str):
+def look_for_in_text_file(pattern: str, file_to: str, output_file: str):
     numbers_count = 0
 
     if not Path(file_to).exists():
@@ -29,10 +32,18 @@ def look_for_in_text_file(pattern: str, file_to: str):
         for number in re.findall(pattern, file.read()):
             sleep(0.03)
 
-            print(f"Found: +{''.join(number)}\n")
+            print(f"Found: +{''.join(number)}")
             numbers_count += 1
 
+            if output_file:
+                _output(output_file, f"+{''.join(number)}")
+
         print(f"Done\nNumbers count: {numbers_count}")
+
+
+def _output(file_to: str, data: str):
+    with open(file_to, "w") as file:
+        file.write(data) 
 
 
 # if __name__ == "__main__":

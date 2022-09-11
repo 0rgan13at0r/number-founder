@@ -15,3 +15,9 @@
 > * Created function for looking for phone in text file
 > ### Fixed
 > * ### None
+
+## Sep-11-2022 18:20
+> ### Added
+> * Created output function
+> ### Fixed
+> * ### None
