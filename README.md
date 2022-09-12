@@ -6,7 +6,7 @@
 ![Last Commit](https://img.shields.io/github/last-commit/0rgan13at0r/number-founder/main)
 ![Open Issues](https://img.shields.io/github/issues-raw/0rgan13at0r/number-founder)
 ![Closed Requests](https://img.shields.io/github/issues-pr-closed/0rgan13at0r/number-founder)
-![All Start](https://img.shields.io/github/stars/0rgan13at0r/number-founder?style=social)
+![All Stars](https://img.shields.io/github/stars/0rgan13at0r/number-founder?style=social)
 ![Watchers](https://img.shields.io/github/watchers/0rgan13at0r/number-founder?style=social)
 
 ## **Description**
