@@ -11,7 +11,7 @@
 
 ## **Description**
 
-Program is looking for numbers by your pattern in clipboard or text-files.
+Program is looking for numbers by your pattern in clipboard or text-files
 
 ## **Install**
 
