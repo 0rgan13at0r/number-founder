@@ -10,39 +10,22 @@
 ![Watchers](https://img.shields.io/github/watchers/0rgan13at0r/number-founder?style=social)
 
 ## **Description**
-
-<<<<<<< HEAD
-Program is looking for numbers by your pattern in clipboard or text-files
-=======
 Program is looking for numbers by your pattern in clipboard or text-files.
->>>>>>> 78125d0682ed69b51d583dd84afce2b42662f14d
 
 ## **Install**
 
 Install with pip
-<<<<<<< HEAD
 ```python3
-=======
-```
->>>>>>> 78125d0682ed69b51d583dd84afce2b42662f14d
 pip3 install -r requirements.txt
 ```
 
 Install with poetry
-<<<<<<< HEAD
 ```python3
-=======
-```
->>>>>>> 78125d0682ed69b51d583dd84afce2b42662f14d
 poetry install
 ```
 
 ## **Demo**
-<<<<<<< HEAD
 ```python3
-=======
-```
->>>>>>> 78125d0682ed69b51d583dd84afce2b42662f14d
 # Looking for in clipboard
 python3 main.py -p <YOUR NUMBER PATTERN> -c --output numbers.txt
 
