@@ -7,7 +7,9 @@ from time import sleep
 
 
 def look_for_in_clipboard(pattern: str, output_file: str):
-    _find_number(pattern, pyperclip.paste(), output_file)
+    not_filter_data = pyperclip.paste()
+
+    _find_number(pattern, not_filter_data, output_file)
 
 
 def look_for_in_text_file(pattern: str, file_to: str, output_file: str):
@@ -17,7 +19,9 @@ def look_for_in_text_file(pattern: str, file_to: str, output_file: str):
         sys.exit(1)
 
     with open(file_to, "r") as file:
-        _find_number(pattern, file.read(), output_file)
+        not_filter_data = file.read()
+
+        _find_number(pattern, not_filter_data, output_file)
 
 
 def _find_number(pattern: str, func, output_file: str):
@@ -37,4 +41,4 @@ def _find_number(pattern: str, func, output_file: str):
 
 def _output(file_to: str, data: str):
     with open(file_to, "w") as file:
-        file.write(data) 
+        file.write(data)
