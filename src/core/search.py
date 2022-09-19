@@ -30,7 +30,7 @@ def _find_number(pattern: str, func, output_file: str):
     for number in re.findall(pattern, func):
             sleep(0.05)
 
-            print(f"Found: +{''.join(number)}")
+            print(f"Found: {''.join(number)}")
             numbers_count += 1
 
             if output_file:
