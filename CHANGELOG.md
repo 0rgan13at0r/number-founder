@@ -30,3 +30,9 @@
 > ### Fixed
 > * Optimized 'look_for_in_clipboard' function
 > * Optimized 'look_for_in_text_file' function
+
+## Sep-19-2022 20:03
+> ### Added
+> * Pattern structure
+> ### Fixed
+> * Delete avaibling use user's pattern.
