@@ -1,14 +1,15 @@
 [tool.poetry]
 name = "number-founder"
 version = "0.1.0"
-description = "Found number by pattern in file or clipboar"
+description = "Found number by pattern in file or clipboard"
 authors = ["Organ13at0r <Organ13at0r_official@proton.me>"]
 license = "MIT"
 
 [tool.poetry.dependencies]
-python = "3.10.5"
+python = "^3.10.5"
 argparse = "^1.4.0"
 pyperclip = "^1.8.2"
+PyPDF2 = "^2.10.9"
 
 [tool.poetry.dev-dependencies]
 

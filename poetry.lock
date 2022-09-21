@@ -7,6 +7,17 @@ optional = false
 python-versions = "*"
 
 [[package]]
+name = "pypdf2"
+version = "2.10.9"
+description = "A pure-python PDF library capable of splitting, merging, cropping, and transforming PDF files"
+category = "main"
+optional = false
+python-versions = ">=3.6"
+
+[package.extras]
+crypto = ["pycryptodome"]
+
+[[package]]
 name = "pyperclip"
 version = "1.8.2"
 description = "A cross-platform clipboard module for Python. (Only handles plain text for now.)"
@@ -16,13 +27,17 @@ python-versions = "*"
 
 [metadata]
 lock-version = "1.1"
-python-versions = "3.10.5"
-content-hash = "d26aa8db4eb75b54fde49812369e2d16f6c5808106e7c141b79f8af87e036763"
+python-versions = "^3.10.5"
+content-hash = "d55b9becc969694f94f59d49e10cb118a0fe35f7cd140bc6b286053835bad2fa"
 
 [metadata.files]
 argparse = [
     {file = "argparse-1.4.0-py2.py3-none-any.whl", hash = "sha256:c31647edb69fd3d465a847ea3157d37bed1f95f19760b11a47aa91c04b666314"},
     {file = "argparse-1.4.0.tar.gz", hash = "sha256:62b089a55be1d8949cd2bc7e0df0bddb9e028faefc8c32038cc84862aefdd6e4"},
+]
+pypdf2 = [
+    {file = "PyPDF2-2.10.9-py3-none-any.whl", hash = "sha256:cf0e2f284f10646e9f11e85e0b8c48c8908580ff0b7aa0b1e4f09e29bc762243"},
+    {file = "PyPDF2-2.10.9.tar.gz", hash = "sha256:f2da5254f054e8ef810c531fe11af6f0a436a2be15985ee0d28868d8698e5a3f"},
 ]
 pyperclip = [
     {file = "pyperclip-1.8.2.tar.gz", hash = "sha256:105254a8b04934f0bc84e9c24eb360a591aaf6535c9def5f29d92af107a9bf57"},
