@@ -1,38 +1,45 @@
 # v0.1.0
 ## Sep-11-2022 16:46
 > ### Added
-> * Created CLI-interface
+> * Created CLI-interface.
 > ### Fixed
-> * ### None
+> * None
 
 ## Sep-11-2022 17:30
 > ### Added
-> * Created function for looking for phone in clipboard
+> * Created function for looking for phone in clipboard.
 > ### Fixed
-> * ### None
+> * None
 
 ## Sep-11-2022 17:47
 > ### Added
-> * Created function for looking for phone in text file
+> * Created function for looking for phone in text file.
 > ### Fixed
-> * ### None
+> * None
 
 ## Sep-11-2022 18:20
 > ### Added
-> * Created output function
+> * Created output function.
 > ### Fixed
-> * ### None
+> * None
 
 ## Sep-11-2022 18:40
 > ### Added
-> * Created one unique function for looking for numbers
-> * Some refactoring
+> * Created one unique function for looking for numbers.
+> * Some refactoring.
 > ### Fixed
-> * Optimized 'look_for_in_clipboard' function
-> * Optimized 'look_for_in_text_file' function
+> * Optimized 'look_for_in_clipboard' function.
+> * Optimized 'look_for_in_text_file' function.
 
 ## Sep-19-2022 20:03
 > ### Added
-> * Pattern structure
+> * Pattern structure.
 > ### Fixed
 > * Delete avaibling use user's pattern.
+
+## Sep-21-2022 19:30
+> ### Added
+> * Parsing numbers in PDF files.
+> * Improved regex and.
+> ### Fixed
+> * None
