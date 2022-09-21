@@ -1,7 +1,7 @@
 [tool.poetry]
 name = "number-founder"
 version = "0.1.0"
-description = "Found number by pattern in file or clipboard"
+description = "Found number by pattern in text files, clipboard or pdf files."
 authors = ["Organ13at0r <Organ13at0r_official@proton.me>"]
 license = "MIT"
 

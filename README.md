@@ -10,7 +10,7 @@
 ![Watchers](https://img.shields.io/github/watchers/0rgan13at0r/number-founder?style=social)
 
 ## **Description**
-Program is looking for numbers by your pattern in clipboard or text-files.
+Program is searching Belarusian,Russian,Ukraine numbers in text-files, pdf-files and clipboard.
 
 ## **Install**
 
@@ -26,9 +26,12 @@ poetry install
 
 ## **Demo**
 ```python3
-# Looking for in clipboard
-python3 main.py -p <YOUR NUMBER PATTERN> -c --output numbers.txt
+# Searching in clipboard
+python3 main.py -p <BY,UK,RU> -c --output numbers.txt
 
-# Looking for in text file
-python3 main.py -p <YOUR NUMBER PATTERN> --text-file files.txt -o numbers.txt
+# Searching in text file
+python3 main.py -p <BY,UK,RU> -ft files.txt -o numbers.txt
+
+# Searching in pdf file
+python3 main.py -p <BY,UK,RU> --pdf file.pdf
 ```
