@@ -2,10 +2,13 @@ import re
 import pyperclip
 import sys
 import PyPDF2
+import colorama
 
+from colorama import Fore, Back
 from pathlib import Path
 from time import sleep
 
+colorama.init()
 
 def search_in_clipboard(pattern: str, output_file: str):
     not_filter_data = pyperclip.paste()
@@ -15,7 +18,7 @@ def search_in_clipboard(pattern: str, output_file: str):
 def search_in_text_file(pattern: str, file_to: str, output_file: str):
 
     if not Path(file_to).exists():
-        print("File wasn't founded!!")
+        print(Fore.RED + "File wasn't founded!!")
         sys.exit(1)
 
     with open(file_to, "r") as file:
@@ -35,7 +38,7 @@ def search_in_pdf_file(pattern: str, file_to: str, output_file: str):
             data += pageObj.extractText()
 
     _find_number(pattern, data, output_file)
-    
+
 
 def _find_number(pattern: str, data, output_file: str):
     numbers_count = 0
@@ -43,13 +46,13 @@ def _find_number(pattern: str, data, output_file: str):
     for number in re.findall(pattern, data):
             sleep(0.05)
 
-            print(f"Found: {''.join(number)}")
+            print(Fore.WHITE + f"Found: {''.join(number)}")
             numbers_count += 1
 
             if output_file:
                 _output(output_file, f"{''.join(number)}\n")
 
-    print(f"Done\nNumbers count: {numbers_count}")
+    print(Fore.BLUE + f"\nDone\nNumbers count: {numbers_count}")
 
 
 def _output(file_to: str, data: str):
