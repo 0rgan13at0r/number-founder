@@ -3,6 +3,7 @@ import pyperclip
 import sys
 import PyPDF2
 import colorama
+import requests
 
 from colorama import Fore, Back
 from pathlib import Path
@@ -11,19 +12,21 @@ from time import sleep
 colorama.init()
 
 def search_in_clipboard(pattern: str, output_file: str):
-    not_filter_data = pyperclip.paste()
-    _find_number(pattern, not_filter_data, output_file)
+    data = pyperclip.paste()
+    _find_number(pattern, data, output_file)
 
 
 def search_in_text_file(pattern: str, file_to: str, output_file: str):
+    data = ""
 
     if not Path(file_to).exists():
         print(Fore.RED + "File wasn't founded!!")
         sys.exit(1)
 
     with open(file_to, "r") as file:
-        not_filter_data = file.read()
-        _find_number(pattern, not_filter_data, output_file)
+        data += file.read()
+
+    _find_number(pattern, data, output_file)
 
 
 def search_in_pdf_file(pattern: str, file_to: str, output_file: str):
@@ -40,6 +43,19 @@ def search_in_pdf_file(pattern: str, file_to: str, output_file: str):
     _find_number(pattern, data, output_file)
 
 
+def search_on_the_site(pattern: str, url: str, output_file: str):
+    data = ""
+
+    try:
+        response = requests.get(url)
+        data += response.text
+    except requests.exceptions.ConnectionError:
+        print(Fore.RED + "Connection Failed!")
+        sys.exit(1)
+
+    _find_number(pattern, data, output_file)
+
+
 def _find_number(pattern: str, data, output_file: str):
     numbers_count = 0
 
@@ -52,7 +68,10 @@ def _find_number(pattern: str, data, output_file: str):
             if output_file:
                 _output(output_file, f"{''.join(number)}\n")
 
-    print(Fore.BLUE + f"\nDone\nNumbers count: {numbers_count}")
+    if numbers_count != 0:
+        print(Fore.BLUE + f"\nNumbers count: {numbers_count}")
+    else:
+        print(Fore.RED + "No numbers!")
 
 
 def _output(file_to: str, data: str):

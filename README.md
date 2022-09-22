@@ -10,7 +10,7 @@
 ![Watchers](https://img.shields.io/github/watchers/0rgan13at0r/number-founder?style=social)
 
 ## **Description**
-Program is searching Belarusian,Russian,Ukraine numbers in text-files, pdf-files and clipboard.
+Program is searching Belarusian,Russian,Ukraine numbers in text-files, pdf-files, clipboard or on the sites.
 
 ## **Install**
 
