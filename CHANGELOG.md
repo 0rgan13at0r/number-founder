@@ -43,3 +43,10 @@
 > * Improved regex and.
 > ### Fixed
 > * None
+
+## Sep-22-2022 16:09
+> ### Added
+> * Parsing numbers on the sites.
+> * Refactor arguments parser.
+> ### Fixed
+> * Some refactoring.
