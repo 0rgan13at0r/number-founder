@@ -50,3 +50,10 @@
 > * Refactor arguments parser.
 > ### Fixed
 > * Some refactoring.
+
+## Sep-22-2022 17:34
+> ### Added
+> * Progress-Bar.
+> * Headers for requests on sites.
+> ### Fixed
+> * Some refactoring.
