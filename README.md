@@ -24,6 +24,18 @@ Install with poetry
 poetry install
 ```
 
+## **Docker**
+
+```
+# Create image
+sudo docker build -t number-founder .
+
+# Start container
+sudo docker run number-founder -p BY -c # Searching in clipboard
+
+sudo docker run -v $(pwd):/number-founder number-founder -p BY --pdf FILE.pdf # Searching in pdf or text-file
+```
+
 ## **Demo**
 ```python3
 # Searching in clipboard
