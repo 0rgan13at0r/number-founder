@@ -1,0 +1,10 @@
+.dockerignore
+.editorconfig
+.git
+.gitignore
+
+LICENSE
+README.md
+CHANGELOG.md
+poetry.lock
+pyproject.toml
