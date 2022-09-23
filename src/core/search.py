@@ -1,6 +1,3 @@
-#!/usr/bin/python3
-# -- coding: UTF-8 --
-
 import re
 import pyperclip
 import sys
@@ -12,15 +9,15 @@ from fake_useragent import UserAgent
 from colorama import Fore, Back
 from pathlib import Path
 from time import sleep
+from .output import output
 
 colorama.init()
 
-def search_in_clipboard(pattern: str, output_file: str):
+def search_in_clipboard(pattern, output_file):
     data = pyperclip.paste()
     _find_number(pattern, data, output_file)
 
-
-def search_in_text_file(pattern: str, file_to: str, output_file: str):
+def search_in_text_file(pattern, file_to, output_file):
     data = ""
 
     if not Path(file_to).exists():
@@ -32,8 +29,7 @@ def search_in_text_file(pattern: str, file_to: str, output_file: str):
 
     _find_number(pattern, data, output_file)
 
-
-def search_in_pdf_file(pattern: str, file_to: str, output_file: str):
+def search_in_pdf_file(pattern, file_to, output_file):
     data = ""
 
     with open(file_to, "rb") as file:
@@ -46,28 +42,29 @@ def search_in_pdf_file(pattern: str, file_to: str, output_file: str):
 
     _find_number(pattern, data, output_file)
 
-
-def search_on_the_site(pattern: str, url: str, output_file: str):
+def search_on_the_site(pattern, url, output_file):
     data = ""
-    fake_agent = UserAgent()
 
     try:
-        response = requests.get(
-            url=url,
-            headers= {
-                'User-Agent': fake_agent.google, # Initialisate random User-Agent.
-                'Accept': '*/*',
-            }
-        )
-        data += response.text
+        data = _get_data_for_site(url)
     except requests.exceptions.ConnectionError:
         print(Fore.RED + "Connection Failed!")
         sys.exit(1)
 
     _find_number(pattern, data, output_file)
 
+def _get_data_for_site(url):
+    fake_agent = UserAgent()
 
-def _find_number(pattern: str, data: str, output_file: str):
+    headers = {
+        'User-Agent': fake_agent.google, # Initialisate random User-Agent.
+        'Accept': '*/*',
+    }
+
+    response = requests.get(url, headers=headers)
+    return response.text
+
+def _find_number(pattern, data, output_file):
     numbers_count = 0
 
     for number in re.findall(pattern, data):
@@ -81,8 +78,11 @@ def _find_number(pattern: str, data: str, output_file: str):
 
             # Write data in a file.
             if output_file:
-                _output(output_file, f"+{''.join(formated_number)}\n")
+                output(output_file, f"+{''.join(formated_number)}\n")
 
+    _get_info(numbers_count, output_file)
+
+def _get_info(numbers_count, output_file):
     if numbers_count != 0:
         print(Fore.LIGHTYELLOW_EX + f"\nNumbers count: {numbers_count}")
     else:
@@ -90,8 +90,3 @@ def _find_number(pattern: str, data: str, output_file: str):
 
     if output_file:
         print(Fore.LIGHTYELLOW_EX + f"File {output_file} succesfull saved.")
-
-
-def _output(file_to: str, data: str):
-    with open(file_to, "a") as file:
-        file.write(data)
