@@ -1,3 +1,6 @@
+#!/usr/bin/python3
+# -- coding: UTF-8 --
+
 import argparse
 import sys
 import re
@@ -70,7 +73,7 @@ if __name__ == "__main__":
     group.add_argument("--pdf", type=str, help="Searching in pdf file.", metavar="F")
     group.add_argument("--url", type=str, help="Searching on the site.", metavar="U")
 
-    parser.add_argument("--pattern", "-p", required=True ,type=str, choices=["RU", "BY", "UK"] ,help="Usage define pattern: RU, BY, UK", metavar="P")
+    parser.add_argument("--pattern", "-p", required=True ,type=str, choices=["RU", "BY", "UK"] ,help="Usage define pattern: (RU,BY,UK)", metavar="P")
     parser.add_argument("--output", "-o", help="Write in file", type=str, metavar="F", default=False)
 
     args = parser.parse_args()
