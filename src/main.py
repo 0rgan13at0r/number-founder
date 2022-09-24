@@ -1,85 +1,58 @@
 #!/usr/bin/python3
 # -- coding: UTF-8 --
 
-import argparse
 import sys
 import re
 import colorama
 import time
 
-from tqdm import tqdm
 from colorama import Fore, Back
-from core.search import search_in_clipboard, search_in_text_file, \
-    search_in_pdf_file, search_on_the_site
+from core import args_parser, bar
+from core.search import Search
 
+class Application:
 
-# Draw progress bar in CLI
-def bar():
-    SLEEP_TIME = 0.05
+    def __init__(self):
+        self.patterns = {
+            "RU": r"(\+7)(\s|\W)*(\d{3})(\s|\W)*(\d{3})(\s|\W)*(\d{2})(\s|\W)*(\d{2})",
+            "BY": r"(\+375)(\s|\W)*(\d{2})(\s|\W)*(\d{3})(\s|\W)*(\d{2})(\s|\W)*(\d{2})",
+            "UK": r"(\+380)(\s|\W)*(\d{2})(\s|\W)*(\d{3})(\s|\W)*(\d{2})(\s|\W)*(\d{2})",
+        }
 
-    for i in tqdm(range(100)):
+    def run(self, args):
+        search = Search(self.patterns[args.pattern], args.output)
+
+        print("[Initialisation]")
+        bar.Bar.run()
+
+        print("\n[Prepare Dependencies]")
+        bar.Bar.run()
+
+        if args.clipboard:
+            self._show_color_text("[Parsing Clipboard]")
+            search.in_clipboard()
+        elif args.text_file:
+            self._show_color_text("[Reading File]")
+            search.in_text_file(args.text_file)
+        elif args.pdf:
+            self._show_color_text("[Reading PDF File]")
+            search.in_pdf_file(args.pdf)
+        elif args.url:
+            self._show_color_text("[Parsing Site By URL]")
+            search.on_the_site(args.url)
+
+    def _show_color_text(self, text, SLEEP_TIME=0.05):
+        colorama.init()
+        print(Fore.LIGHTGREEN_EX + f"\n{text}")
         time.sleep(SLEEP_TIME)
-
-
-def main():
-    # Colorama initialisation
-    colorama.init()
-
-    # Waiting in the programm
-    SLEEP_TIME=1.5
-
-    country_pattern = {
-        "RU": r"(\+7)(\s|\W)*(\d{3})(\s|\W)*(\d{3})(\s|\W)*(\d{2})(\s|\W)*(\d{2})",
-        "BY": r"(\+375)(\s|\W)*(\d{2})(\s|\W)*(\d{3})(\s|\W)*(\d{2})(\s|\W)*(\d{2})",
-        "UK": r"(\+380)(\s|\W)*(\d{2})(\s|\W)*(\d{3})(\s|\W)*(\d{2})(\s|\W)*(\d{2})",
-    }
-
-    print(Fore.LIGHTGREEN_EX + "[Initialisation]")
-    bar()
-
-    print(Fore.LIGHTGREEN_EX + "\n[Prepare Dependencies]")
-    bar()
-
-    if args.clipboard:
-        print(Fore.LIGHTGREEN_EX + "\n[Parsing Clipboard]")
-        time.sleep(SLEEP_TIME)
-        search_in_clipboard(country_pattern[args.pattern], args.output)
-    elif args.text_file:
-        print(Fore.LIGHTGREEN_EX + "\n[Reading File]")
-        time.sleep(SLEEP_TIME)
-        search_in_text_file(country_pattern[args.pattern], args.text_file, args.output)
-    elif args.pdf:
-        print(Fore.LIGHTGREEN_EX + "\n[Reading PDF file]")
-        time.sleep(SLEEP_TIME)
-        search_in_pdf_file(country_pattern[args.pattern], args.pdf, args.output)
-    elif args.url:
-        print(Fore.LIGHTGREEN_EX + "\n[Parsing Site By URL]")
-        time.sleep(SLEEP_TIME)
-        search_on_the_site(country_pattern[args.pattern], args.url, args.output)
-
 
 if __name__ == "__main__":
-
-    parser = argparse.ArgumentParser(
-        prog="number-founder",
-        formatter_class=argparse.RawDescriptionHelpFormatter,
-        description=Fore.LIGHTBLUE_EX + "Found number by pattern in text-files, pdf-files, clipboard or on the sites.",
-        usage="%(prog)s -p BY,UK,RU [OPTIONS]",
-    )
-
-    group = parser.add_mutually_exclusive_group(required=True)
-    group.add_argument("--clipboard", "-c", action="store_true", help="Searching in clipboard.")
-    group.add_argument("--text-file",  "-ft", type=str, help="Searching in text file.", metavar="F")
-    group.add_argument("--pdf", type=str, help="Searching in pdf file.", metavar="F")
-    group.add_argument("--url", type=str, help="Searching on the site.", metavar="U")
-
-    parser.add_argument("--pattern", "-p", required=True ,type=str, choices=["RU", "BY", "UK"] ,help="Usage define pattern: (RU,BY,UK)", metavar="P")
-    parser.add_argument("--output", "-o", help="Write in file", type=str, metavar="F", default=False)
-
-    args = parser.parse_args()
-
     try:
-        main()
+        # Create CLI's arguments parser
+        args = args_parser.ArgsParser().create_parser()
+
+        # Star application
+        Application().run(args)
     except KeyboardInterrupt:
         print(Fore.RED + "\nCanceled")
-        sys.exit(0)
+        sys.exit(1)
