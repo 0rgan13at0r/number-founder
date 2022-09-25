@@ -39,11 +39,11 @@ sudo docker run -v $(pwd):/number-founder number-founder -p BY --pdf FILE.pdf # 
 ## **Demo**
 ```python3
 # Searching in clipboard
-python3 main.py -p <BY,UK,RU> -c --output numbers.txt
+python3 main.py -p <BY,UA,RU> -c --output numbers.txt
 
 # Searching in text file
-python3 main.py -p <BY,UK,RU> -ft files.txt -o numbers.txt
+python3 main.py -p <BY,UA,RU> -ft files.txt -o numbers.txt
 
 # Searching in pdf file
-python3 main.py -p <BY,UK,RU> --pdf file.pdf
+python3 main.py -p <BY,UA,RU> --pdf file.pdf
 ```

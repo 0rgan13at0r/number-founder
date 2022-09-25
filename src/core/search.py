@@ -5,11 +5,12 @@ import PyPDF2
 import colorama
 import requests
 import time
+import random
 
-from fake_useragent import UserAgent
 from colorama import Fore, Back
 from pathlib import Path
 from .output import Output
+from .useragents import useragents
 
 class Search:
 
@@ -21,10 +22,12 @@ class Search:
         colorama.init()
 
     def in_clipboard(self):
+        """Search numbers in the clipboard."""
         data = pyperclip.paste()
         self._find_number(data)
 
     def in_text_file(self, file_to):
+        """Search numbers in the text file."""
         if not Path(file_to).exists():
             print(Fore.RED + "File wasn't founded!")
             sys.exit(1)
@@ -33,6 +36,7 @@ class Search:
         self._find_number(data)
 
     def in_pdf_file(self, file_to):
+        """Search numbers in the pdf file."""
         data = ""
 
         with open(file_to, "rb") as file:
@@ -46,6 +50,7 @@ class Search:
         self._find_number(data)
 
     def on_the_site(self, url):
+        """Search numbers on the site."""
         try:
             data = self._get_data_for_site(url)
             self._find_number(data)
@@ -54,10 +59,8 @@ class Search:
             sys.exit(1)
 
     def _get_data_for_site(self, url):
-        fake_agent = UserAgent()
-
         headers = {
-            'User-Agent': fake_agent.google, # Initialisate random User-Agent.
+            'User-Agent': random.choice(useragents), # Initialisate random User-Agent.
             'Accept': '*/*',
         }
 
@@ -65,10 +68,12 @@ class Search:
         return response.text
 
     def _read_file(self, file_to):
+        """Get text in the texting file."""
         with open(file_to, "r") as file:
             return file.read()
 
     def _find_number(self, data):
+        """Main method. Parsing numbers on the data that is getting."""
         for number in re.findall(self.pattern, data):
             time.sleep(0.05)
 
