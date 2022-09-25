@@ -7,7 +7,8 @@ import colorama
 import time
 
 from colorama import Fore, Back
-from core import args_parser, bar
+from core import args_parser
+from core.bar import Loading
 from core.search import Search
 
 class Application:
@@ -16,17 +17,19 @@ class Application:
         self.patterns = {
             "RU": r"(\+7)(\s|\W)*(\d{3})(\s|\W)*(\d{3})(\s|\W)*(\d{2})(\s|\W)*(\d{2})",
             "BY": r"(\+375)(\s|\W)*(\d{2})(\s|\W)*(\d{3})(\s|\W)*(\d{2})(\s|\W)*(\d{2})",
-            "UK": r"(\+380)(\s|\W)*(\d{2})(\s|\W)*(\d{3})(\s|\W)*(\d{2})(\s|\W)*(\d{2})",
+            "UA": r"(\+380)(\s|\W)*(\d{2})(\s|\W)*(\d{3})(\s|\W)*(\d{2})(\s|\W)*(\d{2})",
         }
 
     def run(self, args):
+        """Main Method"""
+
         search = Search(self.patterns[args.pattern], args.output)
 
         print("[Initialisation]")
-        bar.Bar.run()
+        Loading.run()
 
-        print("\n[Prepare Dependencies]")
-        bar.Bar.run()
+        print("[Prepare Dependencies]")
+        Loading.run()
 
         if args.clipboard:
             self._show_color_text("[Parsing Clipboard]")
@@ -43,7 +46,7 @@ class Application:
 
     def _show_color_text(self, text, SLEEP_TIME=0.05):
         colorama.init()
-        print(Fore.LIGHTGREEN_EX + f"\n{text}")
+        print(Fore.LIGHTGREEN_EX + f"{text}")
         time.sleep(SLEEP_TIME)
 
 if __name__ == "__main__":
@@ -51,7 +54,7 @@ if __name__ == "__main__":
         # Create CLI's arguments parser
         args = args_parser.ArgsParser().create_parser()
 
-        # Star application
+        # Start application
         Application().run(args)
     except KeyboardInterrupt:
         print(Fore.RED + "\nCanceled")

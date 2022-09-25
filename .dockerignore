@@ -4,6 +4,7 @@
 .gitignore
 
 LICENSE
+Dockerfile
 README.md
 CHANGELOG.md
 poetry.lock
