@@ -75,3 +75,9 @@
 > * None
 > ### Fixed
 > Some refactoring.
+
+## Oct-02-2022 22:05
+> ### Added
+> * None
+> ### Fixed
+> Bugs fixed and some refactoring.
