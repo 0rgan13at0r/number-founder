@@ -42,6 +42,14 @@ optional = false
 python-versions = ">=3.5"
 
 [[package]]
+name = "pyfiglet"
+version = "0.8.post1"
+description = "Pure-python FIGlet implementation"
+category = "main"
+optional = false
+python-versions = "*"
+
+[[package]]
 name = "pypdf2"
 version = "2.10.9"
 description = "A pure-python PDF library capable of splitting, merging, cropping, and transforming PDF files"
@@ -94,7 +102,7 @@ socks = ["PySocks (>=1.5.6,!=1.5.7,<2.0)"]
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.10.5"
-content-hash = "96d7b9609fc15b801824312fbdc4094fa631c0181971cc4ea1a93cd0a2a51908"
+content-hash = "f1f65d8f761ebc16978cf74bdd63e829dd010c72fa7b916156101931f052eb11"
 
 [metadata.files]
 argparse = [
@@ -116,6 +124,10 @@ colorama = [
 idna = [
     {file = "idna-3.4-py3-none-any.whl", hash = "sha256:90b77e79eaa3eba6de819a0c442c0b4ceefc341a7a2ab77d7562bf49f425c5c2"},
     {file = "idna-3.4.tar.gz", hash = "sha256:814f528e8dead7d329833b91c5faa87d60bf71824cd12a7530b5526063d02cb4"},
+]
+pyfiglet = [
+    {file = "pyfiglet-0.8.post1-py2.py3-none-any.whl", hash = "sha256:d555bcea17fbeaf70eaefa48bb119352487e629c9b56f30f383e2c62dd67a01c"},
+    {file = "pyfiglet-0.8.post1.tar.gz", hash = "sha256:c6c2321755d09267b438ec7b936825a4910fec696292139e664ca8670e103639"},
 ]
 pypdf2 = [
     {file = "PyPDF2-2.10.9-py3-none-any.whl", hash = "sha256:cf0e2f284f10646e9f11e85e0b8c48c8908580ff0b7aa0b1e4f09e29bc762243"},
